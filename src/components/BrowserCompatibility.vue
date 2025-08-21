@@ -7,7 +7,9 @@
         <div class="flex items-center justify-center mb-4">
           <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center">
             <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z">
+              </path>
             </svg>
           </div>
         </div>
@@ -39,13 +41,8 @@
         <div class="mb-6">
           <h4 class="text-sm font-medium text-gray-700 mb-3">推荐浏览器：</h4>
           <div class="grid grid-cols-2 gap-3">
-            <a
-              v-for="browser in recommendedBrowsers"
-              :key="browser.name"
-              :href="browser.downloadUrl"
-              target="_blank"
-              class="flex items-center p-3 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors"
-            >
+            <a v-for="browser in recommendedBrowsers" :key="browser.name" :href="browser.downloadUrl" target="_blank"
+              class="flex items-center p-3 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors">
               <div class="w-8 h-8 mr-3 flex-shrink-0">
                 <img :src="browser.icon" :alt="browser.name" class="w-full h-full" />
               </div>
@@ -59,19 +56,15 @@
 
         <!-- 操作按钮 -->
         <div class="flex flex-col sm:flex-row gap-3">
-          <button
-            @click="continueAnyway"
-            class="flex-1 btn btn-outline"
-          >
+          <button @click="continueAnyway" class="flex-1 btn btn-outline">
             仍要继续
           </button>
-          
-          <button
-            @click="checkAgain"
-            class="flex-1 btn btn-primary"
-          >
+
+          <button @click="checkAgain" class="flex-1 btn btn-primary">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+              </path>
             </svg>
             重新检测
           </button>
@@ -98,7 +91,7 @@
 import { ref, computed, onMounted } from 'vue'
 
 // Emits
-defineEmits<{
+const emit = defineEmits<{
   continue: []
   recheck: []
 }>()
@@ -187,13 +180,13 @@ const checkBrowserCompatibility = () => {
   }
 
   // 检查特定浏览器版本
-  const isOldChrome = /Chrome\/([0-9]+)/.test(userAgent.value) && 
+  const isOldChrome = /Chrome\/([0-9]+)/.test(userAgent.value) &&
     parseInt(RegExp.$1) < 90
-  const isOldFirefox = /Firefox\/([0-9]+)/.test(userAgent.value) && 
+  const isOldFirefox = /Firefox\/([0-9]+)/.test(userAgent.value) &&
     parseInt(RegExp.$1) < 88
-  const isOldSafari = /Version\/([0-9]+).*Safari/.test(userAgent.value) && 
+  const isOldSafari = /Version\/([0-9]+).*Safari/.test(userAgent.value) &&
     parseInt(RegExp.$1) < 14
-  const isOldEdge = /Edg\/([0-9]+)/.test(userAgent.value) && 
+  const isOldEdge = /Edg\/([0-9]+)/.test(userAgent.value) &&
     parseInt(RegExp.$1) < 90
 
   if (isOldChrome || isOldFirefox || isOldSafari || isOldEdge) {

@@ -85,16 +85,20 @@ const handleBrowserRecheck = () => {
   console.log('Rechecking browser compatibility')
 }
 
+// 错误处理器引用
+const errorHandler = (event: ErrorEvent) => {
+  handleGlobalError(new Error(event.message))
+}
+
+const rejectionHandler = (event: PromiseRejectionEvent) => {
+  handleGlobalError(new Error(event.reason))
+}
+
 // 生命周期
 onMounted(() => {
   // 设置全局错误处理
-  window.addEventListener('error', (event) => {
-    handleGlobalError(new Error(event.message))
-  })
-
-  window.addEventListener('unhandledrejection', (event) => {
-    handleGlobalError(new Error(event.reason))
-  })
+  window.addEventListener('error', errorHandler)
+  window.addEventListener('unhandledrejection', rejectionHandler)
 
   // 初始化应用
   initializeApp()
@@ -104,8 +108,8 @@ onUnmounted(() => {
   appStore.cleanup()
 
   // 清理全局错误监听器
-  window.removeEventListener('error', handleGlobalError)
-  window.removeEventListener('unhandledrejection', handleGlobalError)
+  window.removeEventListener('error', errorHandler)
+  window.removeEventListener('unhandledrejection', rejectionHandler)
 })
 </script>
 

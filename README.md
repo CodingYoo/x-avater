@@ -50,3 +50,65 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### Build for GitHub Pages
+
+```sh
+npm run build:gh-pages
+```
+
+## 🚀 GitHub Pages 部署
+
+### 自动部署（推荐）
+
+1. **Fork 本仓库**到你的 GitHub 账户
+
+2. **启用 GitHub Pages**：
+
+   - 进入仓库设置 → Pages
+   - Source 选择 "GitHub Actions"
+
+3. **修改配置**：
+
+   - 编辑 `vite.config.js` 中的 `base` 路径：
+
+   ```js
+   base: process.env.NODE_ENV === 'production' ? '/你的仓库名/' : '/',
+   ```
+
+4. **推送代码**：
+
+   ```sh
+   git add .
+   git commit -m "Deploy to GitHub Pages"
+   git push origin main
+   ```
+
+5. **等待部署完成**：
+   - GitHub Actions 会自动构建和部署
+   - 访问 `https://你的用户名.github.io/你的仓库名/`
+
+### 手动部署
+
+```sh
+# 构建项目
+npm run build:gh-pages
+
+# 部署到 gh-pages 分支（需要安装 gh-pages）
+npm install -g gh-pages
+gh-pages -d dist
+```
+
+## 📝 配置说明
+
+### 环境变量
+
+- `NODE_ENV=production`：生产环境构建
+- 自动优化资源路径和性能
+
+### GitHub Pages 特殊配置
+
+- ✅ SPA 路由重定向支持
+- ✅ 静态资源路径优化
+- ✅ 自动化 CI/CD 部署
+- ✅ 404 页面处理
