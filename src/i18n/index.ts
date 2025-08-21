@@ -3,7 +3,7 @@ import { createI18n } from 'vue-i18n'
 // 动态导入语言包以避免TypeScript模块解析问题
 const zhCN = {
   "app": {
-    "title": "Avatar Background Swap - 头像换背景",
+    "title": "头像换背景",
     "subtitle": "AI智能头像换背景",
     "description": "一键更换头像背景，AI智能抠图，快速生成个性化头像"
   },
