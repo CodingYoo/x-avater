@@ -152,7 +152,7 @@ const emit = defineEmits<{
 
 // Store
 const backgroundStore = useBackgroundStore()
-const { t } = useI18n()
+// const { t } = useI18n() // 暂时未使用
 
 // 响应式数据
 const backgroundType = ref<'color' | 'image'>('color')

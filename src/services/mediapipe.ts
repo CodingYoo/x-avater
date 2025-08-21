@@ -130,9 +130,11 @@ export class MediaPipeService {
       })
 
       // 配置选项 - 使用性能优化的设置
-      this.selfieSegmentation.setOptions({
-        modelSelection: 0, // 使用general模型，更快的处理速度
-      })
+      if (this.selfieSegmentation) {
+        this.selfieSegmentation.setOptions({
+          modelSelection: 0, // 使用general模型，更快的处理速度
+        })
+      }
 
       // 缓存实例
       this.modelCache.set(cacheKey, this.selfieSegmentation)
