@@ -35,12 +35,14 @@ export const useSegmentationStore = defineStore('segmentation', () => {
         return false
       }
     } catch (err) {
+      console.warn('MediaPipe初始化失败，将使用快速模式:', err)
       error.value = {
         code: 'MEDIAPIPE_INIT_FAILED',
-        message: 'AI模型加载失败，请检查网络连接',
+        message: 'AI模型加载失败，将使用快速模式',
         details: err
       }
-      return false
+      // 即使MediaPipe失败，也返回true，让应用继续运行
+      return true
     }
   }
 

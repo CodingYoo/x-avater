@@ -35,25 +35,28 @@ const handleGlobalError = (error: Error) => {
 // 初始化应用
 const initializeApp = async () => {
   try {
+    console.log('开始初始化应用...')
+
     // 步骤1：检查浏览器兼容性
     currentInitStep.value = 0
-    await new Promise(resolve => setTimeout(resolve, 500))
+    await new Promise(resolve => setTimeout(resolve, 300))
 
     // 步骤2：加载应用资源
     currentInitStep.value = 1
-    await new Promise(resolve => setTimeout(resolve, 800))
+    await new Promise(resolve => setTimeout(resolve, 400))
 
     // 步骤3：初始化状态管理
     currentInitStep.value = 2
-    await new Promise(resolve => setTimeout(resolve, 300))
+    await new Promise(resolve => setTimeout(resolve, 200))
 
     // 步骤4：准备用户界面
     currentInitStep.value = 3
-    await new Promise(resolve => setTimeout(resolve, 400))
+    await new Promise(resolve => setTimeout(resolve, 200))
 
+    console.log('应用初始化完成')
     isInitializing.value = false
   } catch (error) {
-    console.error('App initialization failed:', error)
+    console.error('应用初始化失败:', error)
     globalError.value = error instanceof Error ? error : new Error('初始化失败')
     isInitializing.value = false
   }

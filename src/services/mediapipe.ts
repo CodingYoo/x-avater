@@ -117,15 +117,15 @@ export class MediaPipeService {
       // 创建实例
       this.selfieSegmentation = new SelfieSegmentation({
         locateFile: (file: string) => {
-          // 优先使用本地资源，提高加载速度
-          const localUrl = `/node_modules/@mediapipe/selfie_segmentation/${file}`
+          // 使用CDN资源，确保GitHub Pages兼容性
+          const cdnUrl = `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}`
 
           // 预加载WASM文件到缓存
           if (file.endsWith('.wasm') && !this.wasmCache.has(file)) {
-            this.preloadWasm(localUrl, file)
+            this.preloadWasm(cdnUrl, file)
           }
 
-          return localUrl
+          return cdnUrl
         }
       })
 
