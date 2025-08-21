@@ -35,28 +35,33 @@ const handleGlobalError = (error: Error) => {
 // 初始化应用
 const initializeApp = async () => {
   try {
-    console.log('开始初始化应用...')
+    console.log('🚀 开始初始化应用...')
 
     // 步骤1：检查浏览器兼容性
+    console.log('📋 步骤1：检查浏览器兼容性')
     currentInitStep.value = 0
     await new Promise(resolve => setTimeout(resolve, 300))
 
     // 步骤2：加载应用资源
+    console.log('📦 步骤2：加载应用资源')
     currentInitStep.value = 1
     await new Promise(resolve => setTimeout(resolve, 400))
 
     // 步骤3：初始化状态管理
+    console.log('🔧 步骤3：初始化状态管理')
     currentInitStep.value = 2
     await new Promise(resolve => setTimeout(resolve, 200))
 
     // 步骤4：准备用户界面
+    console.log('🎨 步骤4：准备用户界面')
     currentInitStep.value = 3
     await new Promise(resolve => setTimeout(resolve, 200))
 
-    console.log('应用初始化完成')
+    console.log('✅ 应用初始化完成！')
     isInitializing.value = false
   } catch (error) {
-    console.error('应用初始化失败:', error)
+    console.error('❌ 应用初始化失败:', error)
+    console.error('错误详情:', error)
     globalError.value = error instanceof Error ? error : new Error('初始化失败')
     isInitializing.value = false
   }
@@ -76,6 +81,12 @@ const resetAfterError = () => {
 const reportError = (error: Error | string) => {
   console.error('Error reported:', error)
   // 这里可以集成错误监控服务，如Sentry
+}
+
+// 跳转到简化页面
+const goToSimplePage = () => {
+  console.log('🔄 跳转到简化页面...')
+  window.location.href = './simple.html'
 }
 
 const handleBrowserContinue = () => {
@@ -99,11 +110,21 @@ const rejectionHandler = (event: PromiseRejectionEvent) => {
 
 // 生命周期
 onMounted(() => {
+  console.log('🔄 App组件已挂载，开始设置错误处理...')
+
   // 设置全局错误处理
   window.addEventListener('error', errorHandler)
   window.addEventListener('unhandledrejection', rejectionHandler)
 
+  // 添加额外的调试信息
+  console.log('🌍 当前环境:', {
+    userAgent: navigator.userAgent,
+    url: window.location.href,
+    timestamp: new Date().toISOString()
+  })
+
   // 初始化应用
+  console.log('🎯 开始初始化应用...')
   initializeApp()
 })
 

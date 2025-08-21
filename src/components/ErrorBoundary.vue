@@ -60,6 +60,15 @@
             </svg>
             重新开始
           </button>
+
+          <button @click="goToSimple" class="flex-1 btn btn-secondary">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z">
+              </path>
+            </svg>
+            简化版
+          </button>
         </div>
 
         <!-- 反馈链接 -->
@@ -155,6 +164,11 @@ const reportError = () => {
   // 可以在这里添加错误报告逻辑
   // 比如发送到错误监控服务
   console.error('Error reported:', props.error)
+}
+
+const goToSimple = () => {
+  console.log('🔄 跳转到简化页面...')
+  window.location.href = './simple.html'
 }
 </script>
 
