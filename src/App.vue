@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, onErrorCaptured } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
 import { useAppStore } from '@/stores/app'
 import ErrorBoundary from '@/components/ErrorBoundary.vue'
 import BrowserCompatibility from '@/components/BrowserCompatibility.vue'
@@ -8,6 +9,7 @@ import LoadingOverlay from '@/components/LoadingOverlay.vue'
 
 const appStore = useAppStore()
 const { t } = useI18n()
+const router = useRouter()
 
 // 响应式数据
 const globalError = ref<Error | null>(null)
@@ -120,7 +122,16 @@ onMounted(() => {
   console.log('🌍 当前环境:', {
     userAgent: navigator.userAgent,
     url: window.location.href,
+    pathname: window.location.pathname,
+    search: window.location.search,
+    hash: window.location.hash,
     timestamp: new Date().toISOString()
+  })
+
+  // 检查路由状态
+  console.log('🛣️ 路由信息:', {
+    currentRoute: router.currentRoute.value,
+    hasRoutes: router.getRoutes().length > 0
   })
 
   // 初始化应用
@@ -152,7 +163,7 @@ onUnmounted(() => {
       @reset="resetAfterError" @report="reportError" />
 
     <!-- 主应用内容 -->
-    <RouterView v-if="!isInitializing" />
+    <RouterView v-if="!isInitializing && !globalError" />
   </div>
 </template>
 
