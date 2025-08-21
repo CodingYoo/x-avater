@@ -140,7 +140,7 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, nextTick } from 'vue'
-import { useI18n } from 'vue-i18n'
+// import { useI18n } from 'vue-i18n'
 import { useBackgroundStore } from '@/stores/background'
 import { PRESET_COLORS } from '@/types'
 import type { Background } from '@/types'

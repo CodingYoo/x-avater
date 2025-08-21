@@ -375,7 +375,7 @@ const reprocessWithNewMode = async () => {
 }
 
 // 处理预览渲染完成
-const handlePreviewRendered = (canvas: HTMLCanvasElement) => {
+const handlePreviewRendered = (_canvas: HTMLCanvasElement) => {
   console.log('Preview rendered')
 }
 

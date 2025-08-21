@@ -128,8 +128,12 @@ class PerformanceMonitor {
       try {
         const fidObserver = new PerformanceObserver((list) => {
           for (const entry of list.getEntries()) {
-            this.metrics.fid = entry.processingStart - entry.startTime
-            console.log(`FID: ${this.metrics.fid}ms`)
+            // 类型断言为PerformanceEventTiming
+            const eventEntry = entry as any
+            if (eventEntry.processingStart) {
+              this.metrics.fid = eventEntry.processingStart - entry.startTime
+              console.log(`FID: ${this.metrics.fid}ms`)
+            }
           }
         })
         fidObserver.observe({ entryTypes: ['first-input'] })
@@ -146,8 +150,10 @@ class PerformanceMonitor {
         let clsValue = 0
         const clsObserver = new PerformanceObserver((list) => {
           for (const entry of list.getEntries()) {
-            if (!entry.hadRecentInput) {
-              clsValue += entry.value
+            // 类型断言为LayoutShift
+            const layoutEntry = entry as any
+            if (!layoutEntry.hadRecentInput && layoutEntry.value) {
+              clsValue += layoutEntry.value
             }
           }
           this.metrics.cls = clsValue

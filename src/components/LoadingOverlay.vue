@@ -86,7 +86,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+// import { computed } from 'vue' // 暂时未使用
 
 // Props
 interface Props {
@@ -101,7 +101,8 @@ interface Props {
   estimatedTime?: number // 秒
 }
 
-const props = withDefaults(defineProps<Props>(), {
+// const props = withDefaults(defineProps<Props>(), { // 暂时未使用
+withDefaults(defineProps<Props>(), {
   visible: false,
   type: 'spinner',
   title: '加载中...',

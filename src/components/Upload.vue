@@ -89,7 +89,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useI18n } from 'vue-i18n'
+// import { useI18n } from 'vue-i18n'
 import { useUploadStore } from '@/stores/upload'
 
 // Emits
@@ -99,7 +99,7 @@ defineEmits<{
 
 // Store
 const uploadStore = useUploadStore()
-const { t } = useI18n()
+// const { t } = useI18n() // 暂时未使用
 
 // 响应式数据
 const isDragOver = ref(false)

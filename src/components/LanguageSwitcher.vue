@@ -47,7 +47,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { useI18n } from 'vue-i18n'
+// import { useI18n } from 'vue-i18n'
 import {
   SUPPORTED_LOCALES,
   setLocale,
@@ -62,7 +62,7 @@ const showToast = ref(false)
 const toastMessage = ref('')
 
 // i18n
-const { t } = useI18n()
+// const { t } = useI18n() // 暂时未使用
 
 // 计算属性
 const currentLocale = computed(() => getCurrentLocale())
