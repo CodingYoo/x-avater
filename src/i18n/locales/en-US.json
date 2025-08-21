@@ -1,0 +1,218 @@
+{
+  "app": {
+    "title": "Avatar Background Swap",
+    "subtitle": "AI-Powered Avatar Background Replacement",
+    "description": "One-click avatar background replacement with AI-powered image segmentation"
+  },
+  "header": {
+    "progress": "Progress",
+    "languageSwitch": "Switch Language"
+  },
+  "steps": {
+    "upload": "Upload Image",
+    "segment": "AI Segmentation",
+    "background": "Choose Background",
+    "download": "Download Result"
+  },
+  "upload": {
+    "title": "Upload Avatar Image",
+    "subtitle": "Click or drag image to this area",
+    "formats": "Supported formats: JPG, PNG, WEBP",
+    "maxSize": "File size: Max 5MB",
+    "recommended": "Recommended size: 512×512 pixels or higher",
+    "processing": "Processing image...",
+    "success": "Image uploaded successfully",
+    "reupload": "Re-upload",
+    "proceed": "Start AI Segmentation",
+    "size": "Size",
+    "fileSize": "File Size",
+    "errors": {
+      "invalidType": "Only JPG, PNG, WEBP formats are supported",
+      "tooLarge": "File size cannot exceed 5MB",
+      "uploadFailed": "File upload failed, please try again",
+      "currentSize": "Current file size"
+    }
+  },
+  "segmentation": {
+    "title": "AI Smart Segmentation",
+    "subtitle": "Using AI technology to separate portrait and background...",
+    "processing": "Processing progress",
+    "completed": "Segmentation completed!",
+    "nextStep": "Choose Background",
+    "errors": {
+      "initFailed": "AI model loading failed, please check network connection",
+      "processingFailed": "Image segmentation processing failed",
+      "segmentationFailed": "Portrait segmentation failed, please try again"
+    }
+  },
+  "background": {
+    "title": "Choose Background",
+    "subtitle": "Select preset colors or upload custom background image",
+    "colorTab": "Solid Color",
+    "imageTab": "Image Background",
+    "presetColors": "Preset Colors",
+    "customColor": "Custom Color",
+    "apply": "Apply",
+    "uploadImage": "Upload Background Image",
+    "uploadPrompt": "Click or drag image to this area",
+    "imageFormats": "Supported formats: JPG, PNG, WEBP",
+    "imageMaxSize": "File size: Max 10MB",
+    "imageRecommended": "Recommended size: 512×512 pixels or higher",
+    "imageSelected": "Background image selected",
+    "reselect": "Reselect",
+    "presetBackgrounds": "Preset Backgrounds",
+    "gradientBlue": "Gradient Blue",
+    "gradientPurple": "Gradient Purple",
+    "gradientGreen": "Gradient Green",
+    "loading": "Loading background image...",
+    "errors": {
+      "invalidType": "Background image only supports JPG, PNG, WEBP formats",
+      "tooLarge": "Background image size cannot exceed 10MB",
+      "loadFailed": "Background image loading failed, please try again"
+    }
+  },
+  "preview": {
+    "title": "Live Preview",
+    "subtitle": "View AI segmentation and background composition effects",
+    "processing": "Rendering preview...",
+    "viewModes": {
+      "composite": "Composite Effect",
+      "original": "Original Image",
+      "mask": "Segmentation Mask"
+    },
+    "reprocess": "Reprocess",
+    "size": "Size",
+    "originalSize": "Original",
+    "renderTime": "Render",
+    "errors": {
+      "renderFailed": "Preview rendering failed"
+    }
+  },
+  "download": {
+    "title": "Download Result",
+    "subtitle": "Save your personalized avatar",
+    "format": "File Format",
+    "size": "Image Size",
+    "quality": "Image Quality",
+    "qualityLow": "Low Quality",
+    "qualityMedium": "Medium Quality",
+    "qualityHigh": "High Quality",
+    "estimatedSize": "Estimated Size",
+    "downloadBtn": "Download Avatar",
+    "downloading": "Generating...",
+    "batchOptions": "Batch Download Options",
+    "allSizes": "Download All Sizes",
+    "allFormats": "Download All Formats",
+    "batchDownload": "Batch Download",
+    "history": "Download History",
+    "formats": {
+      "png": "PNG (Recommended)",
+      "jpg": "JPG",
+      "webp": "WebP"
+    },
+    "sizes": {
+      "256": "256×256 (Small)",
+      "512": "512×512 (Standard)",
+      "1024": "1024×1024 (HD)"
+    },
+    "errors": {
+      "downloadFailed": "Download failed",
+      "canvasError": "Cannot create download canvas",
+      "blobError": "Cannot generate image"
+    }
+  },
+  "navigation": {
+    "previous": "Previous Step",
+    "next": "Next Step",
+    "restart": "Restart",
+    "newAvatar": "Create New Avatar"
+  },
+  "errors": {
+    "title": "An Error Occurred",
+    "subtitle": "The application encountered a problem",
+    "retry": "Retry",
+    "retrying": "Retrying...",
+    "reset": "Reset",
+    "report": "Report This Issue",
+    "details": "Error Details",
+    "close": "Close",
+    "codes": {
+      "UNKNOWN": "An unknown error occurred",
+      "NETWORK": "Network connection error",
+      "PERMISSION": "Insufficient permissions",
+      "TIMEOUT": "Operation timeout"
+    }
+  },
+  "compatibility": {
+    "title": "Browser Compatibility Issues",
+    "subtitle": "Your browser may not support some features of this application. For the best experience, please upgrade your browser or use a recommended browser.",
+    "issues": "Detected issues:",
+    "recommended": "Recommended browsers:",
+    "continue": "Continue Anyway",
+    "recheck": "Recheck",
+    "details": "View Details",
+    "userAgent": "User Agent",
+    "checkTime": "Check Time",
+    "problems": {
+      "webassembly": "WebAssembly not supported",
+      "canvas": "Canvas API not supported",
+      "imagebitmap": "ImageBitmap API not supported",
+      "fetch": "Fetch API not supported",
+      "promise": "Promise not supported",
+      "modules": "ES6 modules not supported",
+      "fileapi": "File API not supported",
+      "objecturl": "URL.createObjectURL not supported",
+      "oldversion": "Browser version too old",
+      "ie": "Internet Explorer not supported"
+    }
+  },
+  "loading": {
+    "title": "Loading...",
+    "initializing": "Starting Application",
+    "subtitle": "Please wait, we're preparing the best experience for you",
+    "cancel": "Cancel",
+    "estimatedTime": "Estimated time remaining",
+    "steps": {
+      "compatibility": "Checking browser compatibility",
+      "resources": "Loading application resources",
+      "state": "Initializing state management",
+      "ui": "Preparing user interface"
+    }
+  },
+  "performance": {
+    "metrics": {
+      "fcp": "First Contentful Paint",
+      "lcp": "Largest Contentful Paint",
+      "fid": "First Input Delay",
+      "cls": "Cumulative Layout Shift",
+      "ttfb": "Time to First Byte",
+      "memory": "Memory Usage",
+      "network": "Network Type"
+    },
+    "units": {
+      "ms": "ms",
+      "percent": "%",
+      "bytes": "bytes"
+    }
+  },
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "copy": "Copy",
+    "paste": "Paste",
+    "cut": "Cut",
+    "undo": "Undo",
+    "redo": "Redo",
+    "refresh": "Refresh",
+    "loading": "Loading",
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Info"
+  }
+}

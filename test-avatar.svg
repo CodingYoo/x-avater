@@ -1,0 +1,33 @@
+<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="512" height="512" fill="#f0f0f0"/>
+  
+  <!-- 人像轮廓 -->
+  <circle cx="256" cy="200" r="80" fill="#ffdbac" stroke="#d4a574" stroke-width="2"/>
+  
+  <!-- 眼睛 -->
+  <circle cx="230" cy="180" r="8" fill="#333"/>
+  <circle cx="282" cy="180" r="8" fill="#333"/>
+  
+  <!-- 鼻子 -->
+  <ellipse cx="256" cy="200" rx="4" ry="8" fill="#d4a574"/>
+  
+  <!-- 嘴巴 -->
+  <path d="M 240 220 Q 256 230 272 220" stroke="#333" stroke-width="2" fill="none"/>
+  
+  <!-- 身体 -->
+  <rect x="200" y="280" width="112" height="150" fill="#4a90e2" rx="20"/>
+  
+  <!-- 手臂 -->
+  <rect x="150" y="300" width="50" height="80" fill="#4a90e2" rx="15"/>
+  <rect x="312" y="300" width="50" height="80" fill="#4a90e2" rx="15"/>
+  
+  <!-- 手 -->
+  <circle cx="175" cy="390" r="20" fill="#ffdbac"/>
+  <circle cx="337" cy="390" r="20" fill="#ffdbac"/>
+  
+  <!-- 头发 -->
+  <path d="M 180 140 Q 256 120 332 140 Q 320 160 256 150 Q 192 160 180 140" fill="#8b4513"/>
+  
+  <text x="256" y="480" text-anchor="middle" font-family="Arial" font-size="16" fill="#666">Test Avatar</text>
+</svg>
