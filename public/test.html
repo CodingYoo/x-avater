@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单测试页面</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .test-box { background: white; padding: 20px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .success { border-left: 4px solid #28a745; }
+        .error { border-left: 4px solid #dc3545; }
+        .info { border-left: 4px solid #17a2b8; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; font-size: 12px; }
+        button { padding: 10px 20px; margin: 5px; border: none; border-radius: 4px; cursor: pointer; background: #007bff; color: white; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Avatar Background Swap - 简单测试</h1>
+    
+    <div class="test-box info">
+        <h3>📍 当前位置</h3>
+        <p>URL: <code id="current-url"></code></p>
+        <p>时间: <code id="current-time"></code></p>
+    </div>
+
+    <div class="test-box" id="file-test">
+        <h3>📁 文件测试</h3>
+        <button onclick="testFiles()">测试文件访问</button>
+        <div id="file-results"></div>
+    </div>
+
+    <div class="test-box" id="network-test">
+        <h3>🌐 网络测试</h3>
+        <button onclick="testNetwork()">测试网络连接</button>
+        <div id="network-results"></div>
+    </div>
+
+    <div class="test-box" id="app-test">
+        <h3>🚀 应用测试</h3>
+        <button onclick="testApp()">测试主应用</button>
+        <div id="app-results"></div>
+    </div>
+
+    <script>
+        // 更新页面信息
+        document.getElementById('current-url').textContent = window.location.href;
+        document.getElementById('current-time').textContent = new Date().toLocaleString();
+
+        async function testFiles() {
+            const results = document.getElementById('file-results');
+            results.innerHTML = '<p>正在测试文件访问...</p>';
+
+            const tests = [
+                { name: 'index.html', url: './index.html' },
+                { name: 'favicon.svg', url: './favicon.svg' },
+                { name: '404.html', url: './404.html' }
+            ];
+
+            let html = '';
+            for (const test of tests) {
+                try {
+                    const response = await fetch(test.url);
+                    if (response.ok) {
+                        html += `<p>✅ ${test.name}: OK (${response.status})</p>`;
+                    } else {
+                        html += `<p>❌ ${test.name}: ${response.status} ${response.statusText}</p>`;
+                    }
+                } catch (error) {
+                    html += `<p>❌ ${test.name}: ${error.message}</p>`;
+                }
+            }
+
+            // 测试assets目录
+            try {
+                const indexResponse = await fetch('./index.html');
+                const indexHtml = await indexResponse.text();
+                
+                const jsMatch = indexHtml.match(/src="\.\/assets\/(index-[^"]+\.js)"/);
+                const cssMatch = indexHtml.match(/href="\.\/assets\/(index-[^"]+\.css)"/);
+                
+                if (jsMatch) {
+                    const jsUrl = `./assets/${jsMatch[1]}`;
+                    try {
+                        const response = await fetch(jsUrl);
+                        if (response.ok) {
+                            html += `<p>✅ 主JS文件: ${jsMatch[1]} (${response.status})</p>`;
+                        } else {
+                            html += `<p>❌ 主JS文件: ${response.status} ${response.statusText}</p>`;
+                        }
+                    } catch (error) {
+                        html += `<p>❌ 主JS文件: ${error.message}</p>`;
+                    }
+                }
+
+                if (cssMatch) {
+                    const cssUrl = `./assets/${cssMatch[1]}`;
+                    try {
+                        const response = await fetch(cssUrl);
+                        if (response.ok) {
+                            html += `<p>✅ 主CSS文件: ${cssMatch[1]} (${response.status})</p>`;
+                        } else {
+                            html += `<p>❌ 主CSS文件: ${response.status} ${response.statusText}</p>`;
+                        }
+                    } catch (error) {
+                        html += `<p>❌ 主CSS文件: ${error.message}</p>`;
+                    }
+                }
+            } catch (error) {
+                html += `<p>❌ 无法解析index.html: ${error.message}</p>`;
+            }
+
+            results.innerHTML = html;
+        }
+
+        async function testNetwork() {
+            const results = document.getElementById('network-results');
+            results.innerHTML = '<p>正在测试网络连接...</p>';
+
+            const tests = [
+                { name: 'MediaPipe CDN', url: 'https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js' },
+                { name: 'Google Fonts', url: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap' },
+                { name: 'jsDelivr CDN', url: 'https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js' }
+            ];
+
+            let html = '';
+            for (const test of tests) {
+                try {
+                    const response = await fetch(test.url, { mode: 'no-cors' });
+                    html += `<p>✅ ${test.name}: 可访问</p>`;
+                } catch (error) {
+                    html += `<p>❌ ${test.name}: ${error.message}</p>`;
+                }
+            }
+
+            results.innerHTML = html;
+        }
+
+        async function testApp() {
+            const results = document.getElementById('app-results');
+            results.innerHTML = '<p>正在测试主应用...</p>';
+
+            try {
+                // 创建一个iframe来加载主应用
+                const iframe = document.createElement('iframe');
+                iframe.src = './index.html';
+                iframe.style.width = '100%';
+                iframe.style.height = '300px';
+                iframe.style.border = '1px solid #ddd';
+                iframe.style.borderRadius = '4px';
+                
+                iframe.onload = () => {
+                    results.innerHTML = '<p>✅ 主应用iframe加载成功</p>' + iframe.outerHTML;
+                };
+                
+                iframe.onerror = (error) => {
+                    results.innerHTML = `<p>❌ 主应用iframe加载失败: ${error}</p>`;
+                };
+
+                results.innerHTML = '<p>正在加载主应用iframe...</p>';
+                
+            } catch (error) {
+                results.innerHTML = `<p>❌ 应用测试失败: ${error.message}</p>`;
+            }
+        }
+
+        // 自动运行基本测试
+        window.addEventListener('load', () => {
+            setTimeout(testFiles, 1000);
+        });
+    </script>
+</body>
+</html>

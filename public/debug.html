@@ -138,17 +138,29 @@
                 
                 addResult('success', '应用测试', '✅ 基本DOM操作正常');
                 
-                // 尝试加载主应用
-                const script = document.createElement('script');
-                script.type = 'module';
-                script.src = './assets/index-C7RxfoGS.js';
-                script.onload = () => {
-                    addResult('success', '应用加载', '✅ 主应用脚本加载成功');
-                };
-                script.onerror = (error) => {
-                    addResult('error', '应用加载', `❌ 主应用脚本加载失败: ${error}`);
-                };
-                document.head.appendChild(script);
+                // 尝试加载主应用 - 动态获取文件名
+                fetch('./index.html')
+                    .then(response => response.text())
+                    .then(html => {
+                        const jsMatch = html.match(/src="\.\/assets\/(index-[^"]+\.js)"/);
+                        if (jsMatch) {
+                            const script = document.createElement('script');
+                            script.type = 'module';
+                            script.src = `./assets/${jsMatch[1]}`;
+                            script.onload = () => {
+                                addResult('success', '应用加载', `✅ 主应用脚本加载成功: ${jsMatch[1]}`);
+                            };
+                            script.onerror = (error) => {
+                                addResult('error', '应用加载', `❌ 主应用脚本加载失败: ${error}`);
+                            };
+                            document.head.appendChild(script);
+                        } else {
+                            addResult('error', '应用加载', '❌ 无法找到主应用脚本文件名');
+                        }
+                    })
+                    .catch(error => {
+                        addResult('error', '应用加载', `❌ 无法读取index.html: ${error.message}`);
+                    });
                 
             } catch (error) {
                 addResult('error', '应用测试', `❌ 应用测试失败: ${error.message}`);
