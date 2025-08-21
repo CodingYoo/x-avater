@@ -50,28 +50,50 @@
                 语言: ${navigator.language}
             `);
 
-            // 2. 检查资源加载
+            // 2. 动态检查资源加载
             try {
-                const response = await fetch('./assets/index-C7RxfoGS.js');
-                if (response.ok) {
-                    addResult('success', '2. 主要JS文件', '✅ 主要JavaScript文件加载成功');
-                } else {
-                    addResult('error', '2. 主要JS文件', `❌ 主要JavaScript文件加载失败: ${response.status}`);
-                }
-            } catch (error) {
-                addResult('error', '2. 主要JS文件', `❌ 无法加载主要JavaScript文件: ${error.message}`);
-            }
+                // 从index.html中提取实际的文件名
+                const indexResponse = await fetch('./index.html');
+                const indexHtml = await indexResponse.text();
 
-            // 3. 检查CSS
-            try {
-                const response = await fetch('./assets/index-DQArcPnw.css');
-                if (response.ok) {
-                    addResult('success', '3. 样式文件', '✅ CSS文件加载成功');
+                // 提取JS文件名
+                const jsMatch = indexHtml.match(/src="\.\/assets\/(index-[^"]+\.js)"/);
+                const cssMatch = indexHtml.match(/href="\.\/assets\/(index-[^"]+\.css)"/);
+
+                if (jsMatch) {
+                    const jsFile = `./assets/${jsMatch[1]}`;
+                    try {
+                        const response = await fetch(jsFile);
+                        if (response.ok) {
+                            addResult('success', '2. 主要JS文件', `✅ 主要JavaScript文件加载成功: ${jsMatch[1]}`);
+                        } else {
+                            addResult('error', '2. 主要JS文件', `❌ 主要JavaScript文件加载失败: ${response.status}`);
+                        }
+                    } catch (error) {
+                        addResult('error', '2. 主要JS文件', `❌ 无法加载主要JavaScript文件: ${error.message}`);
+                    }
                 } else {
-                    addResult('error', '3. 样式文件', `❌ CSS文件加载失败: ${response.status}`);
+                    addResult('error', '2. 主要JS文件', '❌ 无法从index.html中找到JS文件引用');
+                }
+
+                // 3. 检查CSS
+                if (cssMatch) {
+                    const cssFile = `./assets/${cssMatch[1]}`;
+                    try {
+                        const response = await fetch(cssFile);
+                        if (response.ok) {
+                            addResult('success', '3. 样式文件', `✅ CSS文件加载成功: ${cssMatch[1]}`);
+                        } else {
+                            addResult('error', '3. 样式文件', `❌ CSS文件加载失败: ${response.status}`);
+                        }
+                    } catch (error) {
+                        addResult('error', '3. 样式文件', `❌ 无法加载CSS文件: ${error.message}`);
+                    }
+                } else {
+                    addResult('error', '3. 样式文件', '❌ 无法从index.html中找到CSS文件引用');
                 }
             } catch (error) {
-                addResult('error', '3. 样式文件', `❌ 无法加载CSS文件: ${error.message}`);
+                addResult('error', '2-3. 资源检查', `❌ 无法检查资源文件: ${error.message}`);
             }
 
             // 4. 检查MediaPipe CDN
