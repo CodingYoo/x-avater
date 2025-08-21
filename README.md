@@ -101,6 +101,11 @@ gh-pages -d dist
 
 ## 📝 配置说明
 
+### 环境要求
+
+- **Node.js**：20.19+ 或 22.12+
+- **npm**：最新版本
+
 ### 环境变量
 
 - `NODE_ENV=production`：生产环境构建
