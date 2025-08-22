@@ -12,6 +12,7 @@
     "build:gh-pages": "cross-env NODE_ENV=production vite build",
     "build:gh-pages-check": "cross-env NODE_ENV=production vue-tsc && vite build",
     "build:analyze": "npm run build && node scripts/analyze-bundle.js",
+    "build:test": "npm run build:gh-pages && node scripts/test-build.js",
     "preview": "vite preview",
     "type-check": "vue-tsc --noEmit",
     "perf:test": "npm run build && npm run preview"

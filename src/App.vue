@@ -85,12 +85,6 @@ const reportError = (error: Error | string) => {
   // 这里可以集成错误监控服务，如Sentry
 }
 
-// 跳转到简化页面
-const goToSimplePage = () => {
-  console.log('🔄 跳转到简化页面...')
-  window.location.href = './simple.html'
-}
-
 const handleBrowserContinue = () => {
   // 用户选择继续使用不兼容的浏览器
   console.warn('User chose to continue with incompatible browser')

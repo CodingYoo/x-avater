@@ -7,7 +7,10 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 export default defineConfig({
   // 使用相对路径，自动适配任何仓库名
   base: './',
-  
+
+  // 确保public目录被正确处理
+  publicDir: 'public',
+
   plugins: [
     vue({
       template: {
@@ -36,7 +39,7 @@ export default defineConfig({
     // GitHub Pages部署优化
     outDir: 'dist',
     assetsDir: 'assets',
-    
+
     // 启用压缩
     minify: 'terser',
     terserOptions: {
@@ -47,7 +50,7 @@ export default defineConfig({
     },
     // 设置chunk大小警告限制
     chunkSizeWarningLimit: 1000,
-    
+
     // 代码分割优化
     rollupOptions: {
       output: {
