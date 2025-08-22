@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avatar Background Swap - 头像换背景</title>
+  <script>
+    // GitHub Pages SPA路由重定向脚本
+    // 将404页面重定向到index.html，并保持路径信息
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = sessionStorage.redirect || l.search.slice(1);
+        if (decoded) {
+          sessionStorage.redirect = '';
+          l.replace(l.pathname.split('/').slice(0, -1).join('/') + decoded);
+        }
+      }
+    }(window.location))
+  </script>
+</head>
+<body>
+  <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+    <h1>正在重定向...</h1>
+    <p>如果页面没有自动跳转，请<a href="./">点击这里</a>返回首页。</p>
+  </div>
+</body>
+</html>
