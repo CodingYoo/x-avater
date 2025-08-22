@@ -35,9 +35,9 @@ export interface AppState {
 
 // 预设背景颜色
 export const PRESET_COLORS = [
-  '#FF6B6B', // 红色
-  '#4ECDC4', // 青色
-  '#45B7D1', // 蓝色
+  '#FFFFFF', // 红色
+  '#438EDB', // 青色
+  '#FF0000', // 蓝色
   '#96CEB4', // 绿色
   '#FFEAA7', // 黄色
   '#DDA0DD', // 紫色
